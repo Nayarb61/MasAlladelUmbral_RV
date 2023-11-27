@@ -3,19 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Portal
-  - InfoObject
-  - Info_Calavera
-  - Info_Comida
-  - Info_Flores
-  - Info_Copal
-  - Info_Veladora
-  - Info_Ofrenda
-  - Msg_Bienvenida
-  - Msg_Bailarina
-  - Msg_TSI
-  - Msg_Coco
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -23,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Muros
+  - 
   - 
   - 
   - 
