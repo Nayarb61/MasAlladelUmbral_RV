@@ -6,7 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Samples/Google Cardboard XR Plugin for Unity/1.22.0/Hello Cardboard/Scenes/HelloCardboard.unity
+    path: Assets/Proyect_ DayofDeath/Scenes/Experiencia_RV.unity
     guid: 145a2a45d7bc746b19cb68410368bf96
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: b205da7ba42bcf143958bc283fe7153f, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 7b3e2170c6eebf946bdc962a90813df7, type: 2}
