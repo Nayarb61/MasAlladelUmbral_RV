@@ -8,6 +8,9 @@ public class MovimientoPersonaje : MonoBehaviour
     public float sensibilidadRaton = 2f;
     public float rangoVertical = 60f;
 
+    public Vector3 userDirection;
+    private Transform cameraTranform;
+
     private float rotacionVertical = 0f;
     private CharacterController characterController;
 
@@ -21,15 +24,43 @@ public class MovimientoPersonaje : MonoBehaviour
     public GameObject Mundo2;
     public GameObject Player2;
 
+    private bool interact = false;
+
+
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        cameraTranform = Camera.main.transform;
+
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
     {
+        /*
+        //For user movement OCCULUS
+        Vector2 userControl = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        float cameraRotation = cameraTranform.eulerAngles.y;
+        Vector3 camerarotation = Quaternion.Euler(new Vector3(0, 90, 0)) * cameraTranform.forward;
+        userDirection = (camerarotation * Input.GetAxis("Horizontal") + cameraTranform.forward * Input.GetAxis("Vertical")).normalized;
+        //userDirection.y = 0f;
+
+        // Para la rotación del usuario con el control de Xbox
+        float horizontalRightStick = Input.GetAxis("HorizontalRightStick");
+        float verticalRightStick = Input.GetAxis("VerticalRightStick");
+
+        if (Mathf.Abs(horizontalRightStick) > 0.1f || Mathf.Abs(verticalRightStick) > 0.1f)
+        {
+            // Calcula la rotación del usuario basada en la palanca derecha
+            Vector3 rotationInput = new Vector3(horizontalRightStick, 0f, verticalRightStick);
+            Vector3 rotatedDirection = Quaternion.Euler(0, cameraRotation, 0) * rotationInput;
+            userDirection = rotatedDirection.normalized;
+        }
+
+        characterController.Move(userDirection * Time.deltaTime * velocidad);
+       */
+
         // Movimiento lateral y frontal
         float movimientoHorizontal = Input.GetAxis("Horizontal");
         float movimientoVertical = Input.GetAxis("Vertical");
@@ -58,14 +89,24 @@ public class MovimientoPersonaje : MonoBehaviour
         {
             Cursor.lockState = Cursor.lockState == CursorLockMode.Locked ? CursorLockMode.None : CursorLockMode.Locked;
         }
+
+        if (Input.GetMouseButtonDown(0) && interact)
+        {
+            MostrarTexto();
+        }
     }
 
-    void OnTriggerEnter(Collider portalCollision)
+    void OnTriggerEnter(Collider Collision)
     {
         // Verificar si la colisión fue con el objeto objetivo
-        if (portalCollision.tag == Etiqueta)
+        if (Collision.tag == Etiqueta)
         {
             CambioMundo();
+        }
+
+        if(Collision.tag == "InfoObject") 
+        {
+            MostrarTexto();        
         }
     }
     void CambioMundo()
@@ -74,11 +115,19 @@ public class MovimientoPersonaje : MonoBehaviour
         Mundo1.SetActive(false);
         Player1.SetActive(false);
         Player1.transform.position = SpawnPosition.transform.position;
+        Player1.transform.rotation = SpawnPosition.transform.rotation;
 
         // Activar el otro mundo
         Mundo2.SetActive(true);
         Player2.SetActive(true);
         Player2.transform.position = SpawnPosition.transform.position;
+        Player2.transform.rotation = SpawnPosition.transform.rotation;
+    }
+
+    void MostrarTexto()
+    { 
+        // Activa el Canvas con el texto explicativo
+       
     }
 }
 
