@@ -48,7 +48,7 @@ public class MovimientoPersonajeMuerto : MonoBehaviour
 
     void Update()
     {
-        /*
+        
         //For user movement OCCULUS
         Vector2 userControl = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         float cameraRotation = cameraTranform.eulerAngles.y;
@@ -56,21 +56,10 @@ public class MovimientoPersonajeMuerto : MonoBehaviour
         userDirection = (camerarotation * Input.GetAxis("Horizontal") + cameraTranform.forward * Input.GetAxis("Vertical")).normalized;
         //userDirection.y = 0f;
 
-        // Para la rotación del usuario con el control de Xbox
-        float horizontalRightStick = Input.GetAxis("HorizontalRightStick");
-        float verticalRightStick = Input.GetAxis("VerticalRightStick");
-
-        if (Mathf.Abs(horizontalRightStick) > 0.1f || Mathf.Abs(verticalRightStick) > 0.1f)
-        {
-            // Calcula la rotación del usuario basada en la palanca derecha
-            Vector3 rotationInput = new Vector3(horizontalRightStick, 0f, verticalRightStick);
-            Vector3 rotatedDirection = Quaternion.Euler(0, cameraRotation, 0) * rotationInput;
-            userDirection = rotatedDirection.normalized;
-        }
-
         characterController.Move(userDirection * Time.deltaTime * velocidad);
-       */
 
+        /*
+         * VARIANTE PARA PRUEBAS POR MEDIO DEL MOUSE Y TECLADO
         // Movimiento lateral y frontal
         float movimientoHorizontal = Input.GetAxis("Horizontal");
         float movimientoVertical = Input.GetAxis("Vertical");
@@ -99,6 +88,7 @@ public class MovimientoPersonajeMuerto : MonoBehaviour
         {
             Cursor.lockState = Cursor.lockState == CursorLockMode.Locked ? CursorLockMode.None : CursorLockMode.Locked;
         }
+        */
     }
 
     void OnTriggerEnter(Collider Collision)
